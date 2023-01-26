@@ -5,14 +5,13 @@ pipeline {
             steps {
                 script {
                     sh 'sudo yum install -y httpd'
-                    sh 'sudo systemctl restart httpd'
                 }
             }
         }
         stage("remove previous html") {
             steps {
                 script {
-                    sh 'sudo rm -rf /var/www/*'
+                    sh 'sudo rm -rf /var/www/html/*'
                     sh 'sudo rm -rf /var/www/html/.git'
                 }
             }
@@ -27,7 +26,7 @@ pipeline {
         stage("deploy") {
             steps {
                 script {
-                    echo "deploying"
+                    sh 'sudo systemctl restart httpd'
                 }
             }
         }
