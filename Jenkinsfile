@@ -4,8 +4,8 @@ pipeline {
         stage("install apache and restart service") {
             steps {
                 script {
-                    sudo yum install -y httpd
-                    sudo systemctl restart httpd
+                    sh ''sudo yum install -y httpd''
+                    sh ''sudo systemctl restart httpd''
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage("clone repo") {
             steps {
                 script {
-                    sudo git clone "https://github.com/MartynGorski/AWSPipe.git" "/var/www/html/"
+                    ''sudo git clone "https://github.com/MartynGorski/AWSPipe.git" "/var/www/html/"''
                 }
             }
         }
