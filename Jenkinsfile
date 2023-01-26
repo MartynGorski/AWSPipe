@@ -12,15 +12,15 @@ pipeline {
         stage("remove previous html") {
             steps {
                 script {
-                    sudo rm -rf /var/www/*
-                    sudo rm -rf /var/www/html/.git
+                    sudo rm -rf "/var/www/*"
+                    sudo rm -rf "/var/www/html/.git"
                 }
             }
         }
         stage("clone repo") {
             steps {
                 script {
-                    sudo git clone https://github.com/MartynGorski/AWSPipe.git /var/www/html/
+                    sudo git clone "https://github.com/MartynGorski/AWSPipe.git" "/var/www/html/"
                 }
             }
         }
