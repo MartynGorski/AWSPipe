@@ -19,7 +19,7 @@ pipeline {
         stage("clone repo") {
             steps {
                 script {
-                    sh 'sudo git clone https://github.com/MartynGorski/AWSPipe.git" /var/www/html/'
+                    sh 'sudo git clone https://github.com/MartynGorski/AWSPipe.git /var/www/html/'
                 }
             }
         }
