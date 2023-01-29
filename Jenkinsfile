@@ -1,32 +1,31 @@
 pipeline {
     agent any
     stages {
-        stage("install apache and restart service") {
+        stage("remove previous container") {
             steps {
                 script {
-                    sh 'sudo yum install -y httpd'
+                    sh 'sudo docker rm -f $(sudo docker ps -a -q)'
                 }
             }
         }
-        stage("remove previous html") {
+        stage("build new image") {
             steps {
                 script {
-                    sh 'sudo rm -rf /var/www/html/*'
-                    sh 'sudo rm -rf /var/www/html/.git'
+                    sh 'sudo docker /home/ec2-user/workspace/AWSTestPipeline -t AWSTestPipeline'
                 }
             }
         }
         stage("clone repo") {
             steps {
                 script {
-                    sh 'sudo git clone https://github.com/MartynGorski/AWSPipe.git /var/www/html/'
+                    sh 'docker run -it -p 9000:9000'
                 }
             }
         }
         stage("deploy") {
             steps {
                 script {
-                    sh 'sudo systemctl restart httpd'
+                    sh 'echo Running at port 9000'
                 }
             }
         }
